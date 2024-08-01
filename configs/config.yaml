@@ -1,0 +1,8 @@
+port: "8000"
+
+db:
+  DB_HOST: "localhost"
+  DB_PORT: "4050"
+  DB_USER: "myuser"
+  DB_NAME: "postgres"
+  DB_SSLMODE: "disable"
