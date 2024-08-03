@@ -1,8 +1,15 @@
 package service
 
-import "webRESTIPE2/pkg/repository"
+import (
+	todo "webRESTIPE2"
+	"webRESTIPE2/pkg/repository"
+)
 
-type Authorization interface{}
+type Authorization interface {
+	CreateUser(user todo.User) (int, error)
+	GenerateToken(username, password string) (string, error)
+	ParseToken(token string) (int, error)
+}
 
 type TodoList interface{}
 
@@ -15,5 +22,7 @@ type Service struct {
 }
 
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Authorization: NewAuthService(repos.Authorization),
+	}
 }
